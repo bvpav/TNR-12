@@ -112,7 +112,7 @@ class Gamepad:
         # TODO: emergency check
 
     def _handle_touchpad_press(self, is_down: bool):
-        self.touchpad = not is_down
+        self.touchpad = is_down
         if self.touchpad:
             for handler in self.__touchpad_down_handlers:
                 handler()
@@ -121,7 +121,7 @@ class Gamepad:
                 handler()
 
     def _handle_playstation_press(self, is_down: bool):
-        self.playstation = not is_down
+        self.playstation = is_down
         if self.playstation:
             for handler in self.__playstation_down_handlers:
                 handler()
@@ -130,7 +130,7 @@ class Gamepad:
                 handler()
 
     def _handle_r3_press(self, is_down: bool):
-        self.r3 = not is_down
+        self.r3 = is_down
         if self.r3:
             for handler in self.__r3_down_handlers:
                 handler()
@@ -139,7 +139,7 @@ class Gamepad:
                 handler()
 
     def _handle_l3_press(self, is_down: bool):
-        self.l3 = not is_down
+        self.l3 = is_down
         if self.l3:
             for handler in self.__l3_down_handlers:
                 handler()
@@ -148,7 +148,7 @@ class Gamepad:
                 handler()
 
     def _handle_pause_press(self, is_down: bool):
-        self.pause = not is_down
+        self.pause = is_down
         if self.pause:
             for handler in self.__pause_down_handlers:
                 handler()
@@ -157,7 +157,7 @@ class Gamepad:
                 handler()
 
     def _handle_share_press(self, is_down: bool):
-        self.share = not is_down
+        self.share = is_down
         if self.share:
             for handler in self.__share_down_handlers:
                 handler()
@@ -166,7 +166,7 @@ class Gamepad:
                 handler()
 
     def _handle_r2_press(self, is_down: bool):
-        self.r2 = not is_down
+        self.r2 = is_down
         if self.r2:
             for handler in self.__r2_down_handlers:
                 handler()
@@ -175,7 +175,7 @@ class Gamepad:
                 handler()
 
     def _handle_l2_press(self, is_down: bool):
-        self.l2 = not is_down
+        self.l2 = is_down
         if self.l2:
             for handler in self.__l2_down_handlers:
                 handler()
@@ -184,7 +184,7 @@ class Gamepad:
                 handler()
 
     def _handle_r1_press(self, is_down: bool):
-        self.r1 = not is_down
+        self.r1 = is_down
         if self.r1:
             for handler in self.__r1_down_handlers:
                 handler()
@@ -193,7 +193,7 @@ class Gamepad:
                 handler()
 
     def _handle_l1_press(self, is_down: bool):
-        self.l1 = not is_down
+        self.l1 = is_down
         if self.l1:
             for handler in self.__l1_down_handlers:
                 handler()
@@ -202,7 +202,7 @@ class Gamepad:
                 handler()
 
     def _handle_triangle_press(self, is_down: bool):
-        self.triangle = not is_down
+        self.triangle = is_down
         if self.triangle:
             for handler in self.__triangle_down_handlers:
                 handler()
@@ -211,7 +211,7 @@ class Gamepad:
                 handler()
 
     def _handle_circle_press(self, is_down: bool):
-        self.circle = not is_down
+        self.circle = is_down
         if self.circle:
             for handler in self.__circle_down_handlers:
                 handler()
@@ -220,7 +220,7 @@ class Gamepad:
                 handler()
 
     def _handle_x_press(self, is_down: bool):
-        self.x = not is_down
+        self.x = is_down
         if self.x:
             for handler in self.__x_down_handlers:
                 handler()
@@ -229,7 +229,7 @@ class Gamepad:
                 handler()
 
     def _handle_square_press(self, is_down: bool):
-        self.square = not is_down
+        self.square = is_down
         if self.square:
             for handler in self.__square_down_handlers:
                 handler()
@@ -288,7 +288,7 @@ class Gamepad:
                 handler(value)
 
     def _handle_leftpad_left_press(self, is_down: bool):
-        self.leftpad_left = not is_down
+        self.leftpad_left = is_down
         if self.leftpad_left:
             for handler in self.__leftpad_left_down_handlers:
                 handler()
@@ -297,7 +297,7 @@ class Gamepad:
                 handler()
 
     def _handle_leftpad_right_press(self, is_down: bool):
-        self.leftpad_right = not is_down
+        self.leftpad_right = is_down
         if self.leftpad_right:
             for handler in self.__leftpad_right_down_handlers:
                 handler()
@@ -306,7 +306,7 @@ class Gamepad:
                 handler()
 
     def _handle_leftpad_up_press(self, is_down: bool):
-        self.leftpad_up = not is_down
+        self.leftpad_up = is_down
         if self.leftpad_up:
             for handler in self.__leftpad_up_down_handlers:
                 handler()
@@ -315,7 +315,7 @@ class Gamepad:
                 handler()
 
     def _handle_leftpad_down_press(self, is_down: bool):
-        self.leftpad_down = not is_down
+        self.leftpad_down = is_down
         if self.leftpad_down:
             for handler in self.__leftpad_down_down_handlers:
                 handler()

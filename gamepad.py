@@ -255,8 +255,9 @@ class Gamepad:
 
     def _handle_joy_r_y(self, value: float):
         self.joy_r_y = value
-        for handler in self.__joy_r_y_handlers:
-            handler(value)
+        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+            for handler in self.__joy_r_y_handlers:
+                handler(value)
 
     def _handle_r2_analog(self, value: float):
         self.r2_analog = value
@@ -270,18 +271,21 @@ class Gamepad:
 
     def _handle_joy_r_x(self, value: float):
         self.joy_r_x = value
-        for handler in self.__joy_r_x_handlers:
-            handler(value)
+        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+            for handler in self.__joy_r_x_handlers:
+                handler(value)
 
     def _handle_joy_l_y(self, value: float):
         self.joy_l_y = value
-        for handler in self.__joy_l_y_handlers:
-            handler(value)
+        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+            for handler in self.__joy_l_y_handlers:
+                handler(value)
 
     def _handle_joy_l_x(self, value: float):
         self.joy_l_x = value
-        for handler in self.__joy_l_x_handlers:
-            handler(value)
+        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+            for handler in self.__joy_l_x_handlers:
+                handler(value)
 
     def _handle_leftpad_left_press(self, is_down: bool):
         self.leftpad_left = not is_down

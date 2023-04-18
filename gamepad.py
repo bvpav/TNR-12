@@ -14,8 +14,14 @@ class Gamepad:
         self.joy_l_x = Gamepad.CENTER
         self.joy_l_y = Gamepad.CENTER
 
+        self.__has_sent_joy_l_x_center = True
+        self.__has_sent_joy_l_y_center = True
+
         self.joy_r_x = Gamepad.CENTER
         self.joy_r_y = Gamepad.CENTER
+
+        self.__has_sent_joy_r_x_center = True
+        self.__has_sent_joy_r_y_center = True
 
         self.l1 = self.l2 = self.l3 = False
         self.r1 = self.r2 = self.r3 = False
@@ -253,11 +259,19 @@ class Gamepad:
         except KeyError:
             pass
 
+    def is_joy_r_y_center(self):
+        return self.joy_r_y >= (Gamepad.CENTER - Gamepad.BLIND) and self.joy_r_y <= (Gamepad.CENTER + Gamepad.BLIND)
+
     def _handle_joy_r_y(self, value: float):
         self.joy_r_y = value
-        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+        if not self.is_joy_r_y_center():
+            self.__has_sent_joy_r_y_center = False
             for handler in self.__joy_r_y_handlers:
                 handler(value)
+        elif not self.__has_sent_joy_r_y_center:
+            for handler in self.__joy_r_y_handlers:
+                handler(Gamepad.CENTER)
+            self.__has_sent_joy_r_y_center = True
 
     def _handle_r2_analog(self, value: float):
         self.r2_analog = value
@@ -269,23 +283,47 @@ class Gamepad:
         for handler in self.__l2_analog_handlers:
             handler(value)
 
+    def is_joy_r_x_center(self):
+        return self.joy_r_x >= (Gamepad.CENTER - Gamepad.BLIND) and self.joy_r_x <= (Gamepad.CENTER + Gamepad.BLIND)
+
     def _handle_joy_r_x(self, value: float):
         self.joy_r_x = value
-        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+        if not self.is_joy_r_x_center():
+            self.__has_sent_joy_r_x_center = False
             for handler in self.__joy_r_x_handlers:
                 handler(value)
+        elif not self.__has_sent_joy_r_x_center:
+            for handler in self.__joy_r_x_handlers:
+                handler(Gamepad.CENTER)
+            self.__has_sent_joy_r_x_center = True
+
+    def is_joy_l_y_center(self):
+        return self.joy_l_y >= (Gamepad.CENTER - Gamepad.BLIND) and self.joy_l_y <= (Gamepad.CENTER + Gamepad.BLIND)
 
     def _handle_joy_l_y(self, value: float):
         self.joy_l_y = value
-        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+        if not self.is_joy_l_y_center():
+            self.__has_sent_joy_l_y_center = False
             for handler in self.__joy_l_y_handlers:
                 handler(value)
+        elif not self.__has_sent_joy_l_y_center:
+            for handler in self.__joy_l_y_handlers:
+                handler(Gamepad.CENTER)
+            self.__has_sent_joy_l_y_center = True
+
+    def is_joy_l_x_center(self):
+        return self.joy_l_x > (Gamepad.CENTER - Gamepad.BLIND) and self.joy_l_x < (Gamepad.CENTER + Gamepad.BLIND)
 
     def _handle_joy_l_x(self, value: float):
         self.joy_l_x = value
-        if value < (Gamepad.CENTER - Gamepad.BLIND) or value > (Gamepad.CENTER + Gamepad.BLIND):
+        if not self.is_joy_l_x_center():
+            self.__has_set_joy_l_x_center = False
             for handler in self.__joy_l_x_handlers:
                 handler(value)
+        elif not self.__has_sent_joy_l_x_center:
+            for handler in self.__joy_l_x_handlers:
+                handler(Gamepad.CENTER)
+            self.__has_sent_joy_l_x_center = True
 
     def _handle_leftpad_left_press(self, is_down: bool):
         self.leftpad_left = is_down

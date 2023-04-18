@@ -312,12 +312,12 @@ class Gamepad:
             self.__has_sent_joy_l_y_center = True
 
     def is_joy_l_x_center(self):
-        return self.joy_l_x > (Gamepad.CENTER - Gamepad.BLIND) and self.joy_l_x < (Gamepad.CENTER + Gamepad.BLIND)
+        return self.joy_l_x >= (Gamepad.CENTER - Gamepad.BLIND) and self.joy_l_x <= (Gamepad.CENTER + Gamepad.BLIND)
 
     def _handle_joy_l_x(self, value: float):
         self.joy_l_x = value
         if not self.is_joy_l_x_center():
-            self.__has_set_joy_l_x_center = False
+            self.__has_sent_joy_l_x_center = False
             for handler in self.__joy_l_x_handlers:
                 handler(value)
         elif not self.__has_sent_joy_l_x_center:

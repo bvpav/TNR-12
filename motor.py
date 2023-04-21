@@ -48,19 +48,17 @@ class MotorController:
         GPIO.setup(motor.pin_forward, GPIO.OUT)
         GPIO.setup(motor.pin_backward, GPIO.OUT)
         GPIO.setup(motor.pin_en, GPIO.OUT)
-        GPIO.output(motor.pin_forward, GPIO.LOW)
+        GPIO.output(motor.pin_forward, GPIO.HIGH)
         GPIO.output(motor.pin_backward, GPIO.LOW)
-        GPIO.output(motor.pin_backward, GPIO.HIGH)
+        GPIO.output(motor.pin_en, GPIO.LOW)
 
     def toggle_drum(self):
         self._drum_on = not self._drum_on
         print('drum_on', self._drum_on)
         if self._drum_on:
-            GPIO.output(self.__drum_motor.pin_forward, GPIO.HIGH)
-            GPIO.output(self.__drum_motor.pin_backward, GPIO.LOW)
+            GPIO.output(self.__drum_motor.pin_en, GPIO.HIGH)
         else:
-            GPIO.output(self.__drum_motor.pin_forward, GPIO.LOW)
-            GPIO.output(self.__drum_motor.pin_backward, GPIO.LOW)
+            GPIO.output(self.__drum_motor.pin_en, GPIO.LOW)
 
     def set_forward_backward(self, value: float):
         print('forward_backward', value)

@@ -96,20 +96,20 @@ class Gamepad:
 
     def _handle_key(self, event: evdev.InputEvent):
         dispatch = {
-            304: self._handle_square_press,
-            305: self._handle_x_press,
-            306: self._handle_circle_press,
+            308: self._handle_square_press,
+            304: self._handle_x_press,
+            305: self._handle_circle_press,
             307: self._handle_triangle_press,
-            308: self._handle_l1_press,
-            309: self._handle_r1_press,
-            310: self._handle_l2_press,
-            311: self._handle_r2_press,
-            312: self._handle_share_press,
-            313: self._handle_pause_press,
-            314: self._handle_l3_press,
-            315: self._handle_r3_press,
+            310: self._handle_l1_press,
+            311: self._handle_r1_press,
+            312: self._handle_l2_press,
+            313: self._handle_r2_press,
+            314: self._handle_share_press,
+            315: self._handle_pause_press,
+            317: self._handle_l3_press,
+            318: self._handle_r3_press,
             316: self._handle_playstation_press,
-            317: self._handle_touchpad_press
+            # 317: self._handle_touchpad_press
         }
         try:
             dispatch[event.code](bool(event.value))

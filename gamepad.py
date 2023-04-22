@@ -247,10 +247,10 @@ class Gamepad:
         absolutes = {
             0: self._handle_joy_l_x,
             1: self._handle_joy_l_y,
-            2: self._handle_joy_r_x,
-            3: self._handle_l2_analog,
-            4: self._handle_r2_analog,
-            5: self._handle_joy_r_y,
+            2: self._handle_l2_analog,
+            3: self._handle_joy_r_x,
+            4: self._handle_joy_r_y,
+            5: self._handle_r2_analog,
             16: self._handle_leftpad_left_right,
             17: self._handle_leftpad_up_down,
         }

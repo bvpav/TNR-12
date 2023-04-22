@@ -3,7 +3,7 @@ import evdev
 from gamepad import Gamepad
 import motor
 
-CONTROLLER_MAC = 'd0:bc:c1:0d:18:c7'
+CONTROLLER_MAC = '4C:B9:9B:05:D2:83'
 
 
 def get_ps5_device():

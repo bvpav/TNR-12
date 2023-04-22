@@ -1,15 +1,7 @@
 import evdev
 
 from gamepad import Gamepad
-from main import CONTROLLER_MAC
-
-def get_ps5_device():
-    devices = map(evdev.InputDevice, evdev.list_devices())
-    for device in devices:
-        if device.uniq.lower() == CONTROLLER_MAC.lower():
-            return device
-    raise LookupError('Unable to find PS5 controller. Have you paired it?')
-
+from main import CONTROLLER_MAC, get_ps5_device
 
 device = get_ps5_device()
 gamepad = Gamepad()

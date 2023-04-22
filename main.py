@@ -9,7 +9,7 @@ CONTROLLER_MAC = '4C:B9:9B:05:D2:83'
 def get_ps5_device():
     devices = map(evdev.InputDevice, evdev.list_devices())
     for device in devices:
-        if device.uniq.lower() == CONTROLLER_MAC.lower():
+        if device.uniq.lower() == CONTROLLER_MAC.lower() and device.name == 'Wireless Controller':
             return device
     raise LookupError('Unable to find PS5 controller. Have you paired it?')
 

@@ -16,11 +16,13 @@ struct DualSense
 
   bool drum_enabled = false;
 
-  int32_t throttle;
+  int32_t throttle_l = 0; // -1023 - 1023
+  int32_t throttle_r = 0; // -1023 - 1023
 
 private:
   ControllerPtr m_ctl = nullptr;
   bool m_drum_locked = false, m_lock_processed = false;
   int64_t m_lock_pressed_at = -1;
+  bool m_drum_pressed_prev = false;
   bool m_lock_previous_pressed = false;
 };

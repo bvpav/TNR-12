@@ -7,7 +7,7 @@
 bd_addr_t DUALSENSE_MAC = {0x4C, 0xB9, 0x9B, 0x05, 0xD2, 0x83};
 
 DualSense ds(DUALSENSE_MAC);
-Servo esc;
+Servo drum, wheel_fl, wheel_fr, wheel_bl, wheel_br;
 
 void on_connected_callback(ControllerPtr ctl)    { ds.on_connected(ctl); }
 void on_disconnected_callback(ControllerPtr ctl) { ds.on_disconnected(ctl); }
@@ -18,7 +18,12 @@ void setup()
   
   Serial.begin(115200);
 
-  esc.attach(12);
+  // PLEASE CHANGE ME
+  drum.attach(12);
+  wheel_fl.attach(13);
+  wheel_fr.attach(14);
+  wheel_bl.attach(15);
+  wheel_br.attach(16);
 
   BP32.setup(on_connected_callback, on_disconnected_callback);
   BP32.enableVirtualDevice(false);
@@ -30,9 +35,9 @@ void loop()
     ds.update();
 
   if (ds.drum_enabled)
-    esc.write(MID_PULSE);
+    drum.write(MID_PULSE);
   else
-    esc.write(MIN_PULSE);
+    drum.write(MIN_PULSE);
 
   vTaskDelay(1);
 }

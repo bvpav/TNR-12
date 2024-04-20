@@ -24,7 +24,8 @@ void DualSense::update()
   if (!m_ctl || !m_ctl->isConnected() || !m_ctl->hasData())
     return;
 
-  if (m_ctl->x())
+  bool drum_pressed = m_ctl->x();
+  if && !m_drum_pressed_prev)
   {
     if (m_drum_locked)
       m_ctl->playDualRumble(0, 100, 0x40, drum_enabled ? 0x50 : 0xcc);
@@ -37,6 +38,7 @@ void DualSense::update()
         m_ctl->setColorLED(0x00, 0x00, 0xff);
     }
   }
+  m_drum_pressed_prev = drum_pressed;
 
   bool lock_pressed = m_ctl->l1();
   if (lock_pressed)
@@ -54,5 +56,7 @@ void DualSense::update()
   }
   m_lock_previous_pressed = lock_pressed;
 
-  throttle = map(m_ctl->throttle(), 0, 1020, MID_PULSE, MAX_PULSE);
+  throttle_l = throttle_r = m_ctl->throttle() - m_ctl->brake();
+  throttle_l += m_ctl->axisRX();
+  throttle_r += m_ctl->axisX();
 }
